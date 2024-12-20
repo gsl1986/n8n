@@ -14,7 +14,6 @@ import type {
 	QueriesRunner,
 	QueryWithValues,
 } from '../../helpers/interfaces';
-
 import { isJSON, replaceEmptyStringsByNulls, stringToArray } from '../../helpers/utils';
 
 import { optionsCollection } from '../common.descriptions';
@@ -86,7 +85,8 @@ export async function execute(
 					const resolvables = getResolvables(rawValues);
 					if (resolvables.length) {
 						for (const resolvable of resolvables) {
-							const evaluatedExpression = this.evaluateExpression(`${resolvable}`, index)?.toString()??'';
+							const evaluatedExpression =
+								this.evaluateExpression(`${resolvable}`, index)?.toString() ?? '';
 							const evaluatedValues = isJSON(evaluatedExpression)
 								? [evaluatedExpression]
 								: stringToArray(evaluatedExpression);
